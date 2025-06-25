@@ -31,7 +31,7 @@ public class ContactFormServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Redirect or simple message
+ 
         response.setContentType("text/html");
         response.getWriter().write("Contact form submitted successfully!");
     }
