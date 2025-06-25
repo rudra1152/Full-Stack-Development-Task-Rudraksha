@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flipr Landing Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #292b2c;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    section {
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+    }
+
+    .card {
+      flex: 0 0 250px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .card .content {
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .card button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 5;
+    }
+
+    .scroll-arrow.left {
+      left: 0;
+    }
+
+    .scroll-arrow.right {
+      right: 0;
+    }
+
+    /* Contact Form Box */
+.contact-box {
+  background-color: rgba(75, 87, 143, 0.95); /* dark with slight transparency */
+  max-width: 400px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.15);
+  color: white;
+  text-align: center;
+}
+
+#contact {
+  background-image: url("images/young-couple-examining-blueprints-with-real-estate-agent-while-buying-new-home 1.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px 20px; /* gives top/bottom spacing */
+}
+
+
+/* Title */
+.contact-box h2 {
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Contact Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input {
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ffffffaa;
+  background-color: transparent;
+  color: white;
+}
+
+form input::placeholder {
+  color: #eee;
+}
+
+form button {
+  background-color: #f76c1d;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+    .newsletter {
+  background-color: #2288f9;
+  color: white;
+  padding: 20px 40px;
+}
+
+.newsletter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.nav-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+.subscribe-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.subscribe-box span {
+  font-weight: 500;
+}
+
+.subscribe-box form {
+  display: flex;
+  border: 1px solid white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.subscribe-box input {
+  border: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  background-color: #2288f9;
+  color: white;
+  outline: none;
+  width: 180px;
+}
+
+.subscribe-box input::placeholder {
+  color: #eee;
+}
+
+.subscribe-box button {
+  background-color: white;
+  color: #2288f9;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .newsletter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subscribe-box form {
+    width: 100%;
+  }
+
+  .subscribe-box input {
+    flex: 1;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>Flipr</header>
+  
+  <section id="contact">
+  <div class="contact-box">
+    <h2>Get a Free Consultation</h2>
+    <form onsubmit="submitContactForm(event)">
+      <input type="text" placeholder="Full Name" name="fullname" required />
+      <input type="email" placeholder="Enter Email Address" name="email" required />
+      <input type="tel" placeholder="Mobile Number" name="mobile" required />
+      <input type="text" placeholder="Area, City" name="city" required />
+      <button type="submit">Get Quick Quote</button>
+    </form>
+  </div>
+</section>
+  
+
+  <!-- Our Projects Section -->
+  <section id="projects">
+    <h2>Our Projects</h2>
+    <button class="scroll-arrow left" onclick="scrollLeft('projects-scroll')">&#8592;</button>
+    <button class="scroll-arrow right" onclick="scrollRight('projects-scroll')">&#8594;</button>
+    <div id="projects-scroll" class="scroll-container">
+      <div class="card">
+        <img src="images/projects/pexels-andres-ayrton-6578391.svg" alt="Smart App" />
+        <div class="content">
+          <h4>GUIDING</h4>
+          <p>GUIDING</p>
+          <button>Read More</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/projects/pexels-brett-sayles-2881232.svg" alt="Smart Pay" />
+        <div class="content">
+          <h4>CONSULTATION</h4>
+          <p>CONSULTATION</p>
+          <button>Read More</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/projects/pexels-brett-sayles-2881232-1.svg" alt="Event Hub" />
+        <div class="content">
+          <h4>DESIGN</h4>
+          <p>DESIGN</p>
+          <button>Read More</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/projects/pexels-brett-sayles-2881232-2.svg" alt="Blogverse" />
+        <div class="content">
+          <h4>MARKETING AND DESIGN</h4>
+          <p>MARKETING AND DESIGN</p>
+          <button>Read More</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/projects/pexels-brett-sayles-2881232-3.svg" alt="TrackIt" />
+        <div class="content">
+          <h4>CONSULTATION MARKETING</h4>
+          <p>CONSULTATION MARKETING</p>
+          <button>Read More</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/projects/pexels-fauxels-3182834.svg" alt="ShopIn" />
+        <div class="content">
+          <h4>CONSULTATION</h4>
+          <p>CONSULTATION</p>
+          <button>Read More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Happy Clients Section -->
+  <section id="clients">
+    <h2>Happy Clients</h2>
+    <button class="scroll-arrow left" onclick="scrollLeft('clients-scroll')">&#8592;</button>
+    <button class="scroll-arrow right" onclick="scrollRight('clients-scroll')">&#8594;</button>
+    <div id="clients-scroll" class="scroll-container">
+      <div class="card">
+        <img src="images/clients/client1.svg" />
+        <div class="content">
+          <p>"Amazing work, exceeded expectations!"</p>
+          <strong>Sophia Walker</strong><br>
+          <small>Product Manager</small>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/clients/client2.svg" />
+        <div class="content">
+          <p>"On-time consultation and great communication."</p>
+          <strong>James Carter</strong><br>
+          <small>Tech Lead</small>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/clients/client3.svg" />
+        <div class="content">
+          <p>"Very professional and creative approach."</p>
+          <strong>Rahul Mehta</strong><br>
+          <small>CEO, DigitalNex</small>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/clients/client4.svg" />
+        <div class="content">
+          <p>"Highly recommend them to others."</p>
+          <strong>Ayesha Khan</strong><br>
+          <small>Founder, GlowTech</small>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/clients/client5.svg" />
+        <div class="content">
+          <p>"Exceptional design and attention to detail."</p>
+          <strong>Emily Rivera</strong><br>
+          <small>UI/UX Designer</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <!-- Newsletter Section Styled Like Footer -->
+<section class="newsletter">
+  <div class="newsletter-container">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Projects</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="subscribe-box">
+      <span>Subscribe Us</span>
+      <form onsubmit="subscribeNewsletter(event)">
+        <input type="email" name="newsletterEmail" placeholder="Enter Email Address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+  <!-- JavaScript -->
+  <script>
+    function scrollLeft(id) {
+      document.getElementById(id).scrollBy({ left: -300, behavior: 'smooth' });
+    }
+
+    function scrollRight(id) {
+      document.getElementById(id).scrollBy({ left: 300, behavior: 'smooth' });
+    }
+
+    function submitContactForm(e) {
+      e.preventDefault();
+      alert("Contact form submitted.");
+    }
+
+    function subscribeNewsletter(e) {
+      e.preventDefault();
+      alert("Subscribed successfully.");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flipr Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #292b2c;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      background: #e0e0e0;
+      gap: 10px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons button {
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .section {
+      display: none;
+      padding: 30px;
+      background: white;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input, textarea, select, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button.submit-btn {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Admin Panel - Flipr</header>
+
+  <div class="nav-buttons">
+    <button onclick="showSection('project')">Add Project</button>
+    <button onclick="showSection('client')">Add Client</button>
+    <button onclick="showSection('contact')">View Contact Forms</button>
+    <button onclick="showSection('newsletter')">View Newsletter</button>
+  </div>
+
+  <!-- Add Project Section -->
+  <div id="project" class="section active">
+    <h2>Add Project</h2>
+    <form onsubmit="event.preventDefault(); alert('Project added!');">
+      <input type="file" accept="image/*" required />
+      <input type="text" placeholder="Project Name" required />
+      <textarea placeholder="Project Description" rows="4" required></textarea>
+      <button type="submit" class="submit-btn">Submit Project</button>
+    </form>
+  </div>
+
+  <!-- Add Client Section -->
+  <div id="client" class="section">
+    <h2>Add Client</h2>
+    <form onsubmit="event.preventDefault(); alert('Client added!');">
+      <input type="file" accept="image/*" required />
+      <input type="text" placeholder="Client Name" required />
+      <textarea placeholder="Client Description" rows="3" required></textarea>
+      <select required>
+        <option value="">Select Designation</option>
+        <option>CEO</option>
+        <option>Web Developer</option>
+        <option>Designer</option>
+        <option>Product Manager</option>
+      </select>
+      <button type="submit" class="submit-btn">Submit Client</button>
+    </form>
+  </div>
+
+  <!-- View Contact Forms -->
+  <div id="contact" class="section">
+    <h2>Contact Form Entries</h2>
+    <table>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>City</th>
+      </tr>
+      <tr>
+        <td>Ravi Kumar</td>
+        <td>ravi@gmail.com</td>
+        <td>9876543210</td>
+        <td>Indore</td>
+      </tr>
+      <!-- More rows will be loaded from backend -->
+    </table>
+  </div>
+
+  <!-- View Newsletter -->
+  <div id="newsletter" class="section">
+    <h2>Newsletter Subscribers</h2>
+    <table>
+      <tr>
+        <th>Email Address</th>
+      </tr>
+      <tr>
+        <td>example@domain.com</td>
+      </tr>
+      <tr>
+        <td>hello@newsletter.com</td>
+      </tr>
+      <!-- More rows will be loaded from backend -->
+    </table>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
